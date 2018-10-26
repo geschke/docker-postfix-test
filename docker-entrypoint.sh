@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-
-
 # Set rights of postfix spool folder
 chown -R postfix /var/spool/postfix 
 chmod -R 755 /var/spool/postfix
@@ -14,7 +12,6 @@ chown -R root /var/spool/postfix/usr
 # Copy necessary files for chroot environment
 cp /etc/resolv.conf /var/spool/postfix/etc/
 cp /etc/services /var/spool/postfix/etc/
-
 
 exec "$@"
 
