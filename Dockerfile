@@ -1,10 +1,10 @@
-FROM ubuntu:bionic
+FROM ubuntu:disco
 
 LABEL name="Postfix"
-LABEL version="0.1"
+LABEL version="0.1.1"
 LABEL maintainer="Ralf Geschke <ralf@kuerbis.org>"
 
-LABEL last_changed="2018-10-26"
+LABEL last_changed="2019-05-11"
 
 # necessary to set default timezone Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive 
@@ -18,9 +18,8 @@ RUN apt-get update \
     && apt-get install -y locales apt-utils \
     && apt-get install -y man postfix postfix-doc rsyslog \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && apt-get install joe less inetutils-ping
-
-#    && rm -rf /var/lib/apt/lists/* 
+    #&& apt-get install -y joe less inetutils-ping \
+    && rm -rf /var/lib/apt/lists/* 
 
 
 ENV LANG en_US.utf8

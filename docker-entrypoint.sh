@@ -13,5 +13,8 @@ chown -R root /var/spool/postfix/usr
 cp /etc/resolv.conf /var/spool/postfix/etc/
 cp /etc/services /var/spool/postfix/etc/
 
+# should be integrated
+# postmap /etc/postfix/sasl/saslpass
+
 exec "$@"
 
