@@ -1,10 +1,10 @@
 FROM ubuntu:disco
 
 LABEL name="Postfix"
-LABEL version="0.1.1"
+LABEL version="0.1.2"
 LABEL maintainer="Ralf Geschke <ralf@kuerbis.org>"
 
-LABEL last_changed="2019-05-11"
+LABEL last_changed="2019-05-22"
 
 # necessary to set default timezone Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive 
@@ -16,18 +16,22 @@ RUN apt-get update \
     && apt-get -y dist-upgrade \
     && apt-get install -y ca-certificates \
     && apt-get install -y locales apt-utils \
-    && apt-get install -y man postfix postfix-doc rsyslog \
+    && apt-get install -y man \
+    && cd /tmp/ && apt -y install wget \
+    && wget http://de.archive.ubuntu.com/ubuntu/pool/main/p/postfix/postfix_3.4.5-1_amd64.deb \
+    && apt -y install /tmp/postfix_3.4.5-1_amd64.deb \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    #&& apt-get install -y joe less inetutils-ping \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/* && rm /tmp/postfix_3.4.5-1_amd64.deb
+    
+    
 
 
 ENV LANG en_US.utf8
 
 
 # Install Forego
-ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
-RUN chmod u+x /usr/local/bin/forego
+#ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
+#RUN chmod u+x /usr/local/bin/forego
 
 
 COPY . /app/
@@ -39,4 +43,6 @@ EXPOSE 25
 #CMD ["/usr/lib/postfix/sbin/master","-d"]
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
-CMD ["forego", "start", "-r"]
+#CMD ["forego", "start", "-r"]
+CMD ["postfix", "start-fg"]
+

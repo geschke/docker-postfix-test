@@ -10,11 +10,16 @@ chown -R root /var/spool/postfix/lib
 chown -R root /var/spool/postfix/usr
 
 # Copy necessary files for chroot environment
-cp /etc/resolv.conf /var/spool/postfix/etc/
-cp /etc/services /var/spool/postfix/etc/
+#cp /etc/resolv.conf /var/spool/postfix/etc/
+#cp /etc/services /var/spool/postfix/etc/
+
+/usr/lib/postfix/configure-instance.sh
 
 # should be integrated
 # postmap /etc/postfix/sasl/saslpass
 
+#postconf maillog_file=/dev/stdout
+
 exec "$@"
+
 
