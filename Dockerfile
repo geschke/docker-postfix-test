@@ -1,10 +1,10 @@
 FROM ubuntu:disco
 
 LABEL name="Postfix"
-LABEL version="0.1.2"
+LABEL version="0.1.3"
 LABEL maintainer="Ralf Geschke <ralf@kuerbis.org>"
 
-LABEL last_changed="2019-05-22"
+LABEL last_changed="2019-08-24"
 
 # necessary to set default timezone Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive 
@@ -34,7 +34,8 @@ ENV LANG en_US.utf8
 #RUN chmod u+x /usr/local/bin/forego
 
 
-COPY . /app/
+COPY ./docker-entrypoint.sh /app/
+COPY ./wait-for-it.sh /app/
 WORKDIR /app/
 
 
