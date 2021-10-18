@@ -8,13 +8,14 @@ Postfix in a Docker image - currently for test purposes only.
 
 To download the image run
 
-    docker pull ghcr.io/geschke/postfix-test:master 
+    docker pull ghcr.io/geschke/postfix-test
+
 
 (main location)
 
 or
 
-    docker pull geschke/postfix-test 
+    docker pull geschke/postfix-test
 
 
 (just a copy for compatibility use).
