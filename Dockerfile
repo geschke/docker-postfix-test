@@ -1,10 +1,10 @@
-FROM ubuntu:eoan
+FROM ubuntu:focal
 
 LABEL name="Postfix"
-LABEL version="0.2.0"
+LABEL version="0.2.1"
 LABEL maintainer="Ralf Geschke <ralf@kuerbis.org>"
 
-LABEL last_changed="2019-12-02"
+LABEL last_changed="2021-10-14"
 
 # necessary to set default timezone Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive 
