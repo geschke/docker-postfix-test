@@ -74,6 +74,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
+          tags: |
+            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'master') }}
+            type=ref,event=tag
+          flavor: |
+            latest=false
           images: ${{ env.REGISTRY_GITHUB }}/${{ env.IMAGE_NAME }},${{ env.REGISTRY_DOCKER_HUB }}/${{ env.IMAGE_NAME }}
 
       # Build and push Docker image with Buildx (don't push on PR)
