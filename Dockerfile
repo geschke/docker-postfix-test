@@ -1,13 +1,13 @@
-FROM ubuntu:focal
+FROM ubuntu:noble-20250404
 
 LABEL name="Postfix"
-LABEL version="0.2.1"
+LABEL version="0.3.0"
 LABEL maintainer="Ralf Geschke <ralf@kuerbis.org>"
 
-LABEL last_changed="2021-10-14"
+LABEL last_changed="2025-04-20"
 
 # necessary to set default timezone Etc/UTC
-ENV DEBIAN_FRONTEND noninteractive 
+ENV DEBIAN_FRONTEND=noninteractive 
 
 # war noch hinzugefügt: --no-install-recommends 
 
@@ -27,7 +27,7 @@ RUN apt-get update \
     
 
 
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 
 
 # Install Forego
